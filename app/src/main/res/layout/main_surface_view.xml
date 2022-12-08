@@ -3,11 +3,15 @@
     xmlns:opencv="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
+    
 
+
+    
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1" >
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,8 +23,8 @@
             <!--  <org.opencv.android.JavaCameraView-->
             <com.example.opencvtest348.CustomSufaceView
                 android:id="@+id/main_surface_view"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 opencv:camera_id="any"
                 opencv:show_fps="true" />
         </LinearLayout>
@@ -47,6 +51,7 @@
 
                     <TextView
                         android:id="@+id/textView1"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Min treshold"
@@ -54,6 +59,7 @@
 
                     <TextView
                         android:id="@+id/textView3"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="5dp"
@@ -74,11 +80,11 @@
                 android:id="@+id/numberOfFingers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:paddingRight="20dp"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:layout_marginStart="30dp"
                 android:text="0"
-                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/white"
                 android:textSize="115dp" />
 
         </RelativeLayout>

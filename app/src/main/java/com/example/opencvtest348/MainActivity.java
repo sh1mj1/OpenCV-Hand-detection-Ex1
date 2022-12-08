@@ -87,7 +87,7 @@ public class MainActivity extends Activity implements OnTouchListener, CvCameraV
     private Scalar CONTOUR_COLOR;
     private Scalar CONTOUR_COLOR_WHITE;
 
-    final Handler mHandler = new Handler();
+    public Handler mHandler = new Handler();
     int numberOfFingers = 0;
 
     final Runnable mUpdateFingerCountResults = new Runnable() {
@@ -141,7 +141,7 @@ public class MainActivity extends Activity implements OnTouchListener, CvCameraV
         mOpenCvCameraView = (CustomSufaceView) findViewById(R.id.main_surface_view);
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
-
+//        setDisplayOrientation
         minTresholdSeekbarText = (TextView) findViewById(R.id.textView3);
 
 
@@ -216,11 +216,19 @@ public class MainActivity extends Activity implements OnTouchListener, CvCameraV
         Toast.makeText(this, caption, Toast.LENGTH_SHORT).show();
         */
         Camera.Size resolution = mOpenCvCameraView.getResolution();
+
         String caption = "Resolution " + Integer.valueOf(resolution.width).toString() + "x" + Integer.valueOf(resolution.height).toString();
         Toast.makeText(this, caption, Toast.LENGTH_SHORT).show();
 
         Camera.Parameters cParams = mOpenCvCameraView.getParameters();
-        cParams.setFocusMode(Camera.Parameters.FOCUS_MODE_INFINITY);
+//        cParams.setFocusMode(Camera.Parameters.FOCUS_MODE_INFINITY);
+//        cParams.setFocusMode(Camera.Parameters.FOCUS_MODE_INFINITY);
+        ////////
+
+        cParams.setPreviewSize(width,height);
+
+        ////////
+
         mOpenCvCameraView.setParameters(cParams);
         Toast.makeText(this, "Focus mode : " + cParams.getFocusMode(), Toast.LENGTH_SHORT).show();
 
@@ -406,6 +414,7 @@ public class MainActivity extends Activity implements OnTouchListener, CvCameraV
         if (this.numberOfFingers > 5) this.numberOfFingers = 5;
 
         mHandler.post(mUpdateFingerCountResults);
+        Log.d(TAG, "Handler.post called");
 
         for (Point p : listPoDefect) {
             Imgproc.circle(mRgba, p, 6, new Scalar(255, 0, 255));
@@ -415,6 +424,7 @@ public class MainActivity extends Activity implements OnTouchListener, CvCameraV
     }
 
     public void updateNumberOfFingers() {
+        Log.d(TAG, "updateNumberOfFingers called, numberOfFingers: " + numberOfFingers);
         numberOfFingersText.setText(String.valueOf(this.numberOfFingers));
     }
 }
